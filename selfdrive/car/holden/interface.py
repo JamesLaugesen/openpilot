@@ -49,48 +49,6 @@ class CarInterface(CarInterfaceBase):
       ret.steerRatioRear = 0.
       ret.centerToFront = ret.wheelbase * 0.4  # wild guess
 
-    elif candidate == CAR.MALIBU:
-      # supports stop and go, but initial engage must be above 18mph (which include conservatism)
-      ret.minEnableSpeed = 18 * CV.MPH_TO_MS
-      ret.mass = 1496. + STD_CARGO_KG
-      ret.wheelbase = 2.83
-      ret.steerRatio = 15.8
-      ret.steerRatioRear = 0.
-      ret.centerToFront = ret.wheelbase * 0.4  # wild guess
-
-    elif candidate == CAR.HOLDEN_ASTRA:
-      ret.mass = 1363. + STD_CARGO_KG
-      ret.wheelbase = 2.662
-      # Remaining parameters copied from Volt for now
-      ret.centerToFront = ret.wheelbase * 0.4
-      ret.minEnableSpeed = 18 * CV.MPH_TO_MS
-      ret.steerRatio = 15.7
-      ret.steerRatioRear = 0.
-
-    elif candidate == CAR.ACADIA:
-      ret.minEnableSpeed = -1.  # engage speed is decided by pcm
-      ret.mass = 4353. * CV.LB_TO_KG + STD_CARGO_KG
-      ret.wheelbase = 2.86
-      ret.steerRatio = 14.4  # end to end is 13.46
-      ret.steerRatioRear = 0.
-      ret.centerToFront = ret.wheelbase * 0.4
-
-    elif candidate == CAR.BUICK_REGAL:
-      ret.minEnableSpeed = 18 * CV.MPH_TO_MS
-      ret.mass = 3779. * CV.LB_TO_KG + STD_CARGO_KG  # (3849+3708)/2
-      ret.wheelbase = 2.83  # 111.4 inches in meters
-      ret.steerRatio = 14.4  # guess for tourx
-      ret.steerRatioRear = 0.
-      ret.centerToFront = ret.wheelbase * 0.4  # guess for tourx
-
-    elif candidate == CAR.CADILLAC_ATS:
-      ret.minEnableSpeed = 18 * CV.MPH_TO_MS
-      ret.mass = 1601. + STD_CARGO_KG
-      ret.wheelbase = 2.78
-      ret.steerRatio = 15.3
-      ret.steerRatioRear = 0.
-      ret.centerToFront = ret.wheelbase * 0.49
-
     # TODO: get actual value, for now starting with reasonable value for
     # civic and scaling by mass and wheelbase
     ret.rotationalInertia = scale_rot_inertia(ret.mass, ret.wheelbase)
