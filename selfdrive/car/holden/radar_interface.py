@@ -3,7 +3,7 @@ from __future__ import print_function
 import math
 from cereal import car
 from opendbc.can.parser import CANParser
-from selfdrive.car.gm.values import DBC, CAR, CanBus
+from selfdrive.car.holden.values import DBC, CAR, CanBus
 from selfdrive.config import Conversions as CV
 from selfdrive.car.interfaces import RadarInterfaceBase
 
