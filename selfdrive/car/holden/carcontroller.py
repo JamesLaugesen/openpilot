@@ -63,10 +63,10 @@ class CarController():
       can_sends.append(gmcan.create_friction_brake_command(self.packer_ch, CanBus.CHASSIS, apply_brake, idx, near_stop, at_full_stop))
       can_sends.append(gmcan.create_gas_regen_command(self.packer_pt, CanBus.POWERTRAIN, apply_gas, idx, enabled, at_full_stop))
 
-    # Send dashboard UI commands (ACC status), 25hz
-    if (frame % 4) == 0:
-      send_fcw = hud_alert == VisualAlert.fcw
-      can_sends.append(gmcan.create_acc_dashboard_command(self.packer_pt, CanBus.POWERTRAIN, enabled, hud_v_cruise * CV.MS_TO_KPH, hud_show_car, send_fcw))
+#     # Send dashboard UI commands (ACC status), 25hz
+#     if (frame % 4) == 0:
+#       send_fcw = hud_alert == VisualAlert.fcw
+#       can_sends.append(gmcan.create_acc_dashboard_command(self.packer_pt, CanBus.POWERTRAIN, enabled, hud_v_cruise * CV.MS_TO_KPH, hud_show_car, send_fcw))
 
 #     # Radar needs to know current speed and yaw rate (50hz),
 #     # and that ADAS is alive (10hz)

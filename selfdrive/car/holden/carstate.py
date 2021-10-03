@@ -4,8 +4,9 @@ from selfdrive.config import Conversions as CV
 from opendbc.can.can_define import CANDefine
 from opendbc.can.parser import CANParser
 from selfdrive.car.interfaces import CarStateBase
-from selfdrive.car.holden.values import DBC, CAR, AccState, CanBus, \
-                                    CruiseButtons, STEER_THRESHOLD
+
+#from selfdrive.car.holden.values import DBC, CAR, AccState, CanBus, CruiseButtons, STEER_THRESHOLD
+from selfdrive.car.holden.values import DBC, CAR, CanBus, CruiseButtons, STEER_THRESHOLD
 
 
 class CarState(CarStateBase):
@@ -62,15 +63,15 @@ class CarState(CarStateBase):
     self.park_brake = pt_cp.vl["EPBStatus"]["EPBClosed"]
     ret.cruiseState.available = bool(pt_cp.vl["ECMEngineStatus"]["CruiseMainOn"])
     ret.espDisabled = pt_cp.vl["ESPStatus"]["TractionControlOn"] != 1
-    self.pcm_acc_status = pt_cp.vl["AcceleratorPedal2"]["CruiseState"]
+#     self.pcm_acc_status = pt_cp.vl["AcceleratorPedal2"]["CruiseState"]
 
     ret.brakePressed = ret.brake > 1e-5
     # Regen braking is braking
     if self.car_fingerprint == CAR.VOLT:
       ret.brakePressed = ret.brakePressed or bool(pt_cp.vl["EBCMRegenPaddle"]["RegenPaddle"])
 
-    ret.cruiseState.enabled = self.pcm_acc_status != AccState.OFF
-    ret.cruiseState.standstill = self.pcm_acc_status == AccState.STANDSTILL
+#     ret.cruiseState.enabled = self.pcm_acc_status != AccState.OFF
+#     ret.cruiseState.standstill = self.pcm_acc_status == AccState.STANDSTILL
 
     return ret
 

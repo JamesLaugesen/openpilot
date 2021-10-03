@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 from cereal import car
 from selfdrive.config import Conversions as CV
-from selfdrive.car.holden.values import CAR, CruiseButtons, \
-                                    AccState, CarControllerParams
+
+#from selfdrive.car.holden.values import CAR, CruiseButtons, AccState, CarControllerParams
+from selfdrive.car.holden.values import CAR, CruiseButtons, CarControllerParams
+
 from selfdrive.car import STD_CARGO_KG, scale_rot_inertia, scale_tire_stiffness, gen_empty_fingerprint
 from selfdrive.car.interfaces import CarInterfaceBase
 
@@ -110,8 +112,8 @@ class CarInterface(CarInterfaceBase):
       events.add(EventName.parkBrake)
     if ret.cruiseState.standstill:
       events.add(EventName.resumeRequired)
-    if self.CS.pcm_acc_status == AccState.FAULTED:
-      events.add(EventName.accFaulted)
+#     if self.CS.pcm_acc_status == AccState.FAULTED:
+#       events.add(EventName.accFaulted)
 #     if ret.vEgo < self.CP.minSteerSpeed:
 #       events.add(car.CarEvent.EventName.belowSteerSpeed)
 

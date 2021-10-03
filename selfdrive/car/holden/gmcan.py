@@ -58,22 +58,22 @@ def create_friction_brake_command(packer, bus, apply_brake, idx, near_stop, at_f
 
   return packer.make_can_msg("EBCMFrictionBrakeCmd", bus, values)
 
-def create_acc_dashboard_command(packer, bus, acc_engaged, target_speed_kph, lead_car_in_sight, fcw):
-  # Not a bit shift, dash can round up based on low 4 bits.
-  target_speed = int(target_speed_kph * 16) & 0xfff
-
-  values = {
-    "ACCAlwaysOne" : 1,
-    "ACCResumeButton" : 0,
-    "ACCSpeedSetpoint" : target_speed,
-    "ACCGapLevel" : 3 * acc_engaged,  # 3 "far", 0 "inactive"
-    "ACCCmdActive" : acc_engaged,
-    "ACCAlwaysOne2" : 1,
-    "ACCLeadCar" : lead_car_in_sight,
-    "FCWAlert": 0x3 if fcw else 0
-  }
-
-  return packer.make_can_msg("ASCMActiveCruiseControlStatus", bus, values)
+# def create_acc_dashboard_command(packer, bus, acc_engaged, target_speed_kph, lead_car_in_sight, fcw):
+#   # Not a bit shift, dash can round up based on low 4 bits.
+#   target_speed = int(target_speed_kph * 16) & 0xfff
+# 
+#   values = {
+#     "ACCAlwaysOne" : 1,
+#     "ACCResumeButton" : 0,
+#     "ACCSpeedSetpoint" : target_speed,
+#     "ACCGapLevel" : 3 * acc_engaged,  # 3 "far", 0 "inactive"
+#     "ACCCmdActive" : acc_engaged,
+#     "ACCAlwaysOne2" : 1,
+#     "ACCLeadCar" : lead_car_in_sight,
+#     "FCWAlert": 0x3 if fcw else 0
+#   }
+# 
+#   return packer.make_can_msg("ASCMActiveCruiseControlStatus", bus, values)
 
 # def create_adas_time_status(bus, tt, idx):
 #   dat = [(tt >> 20) & 0xff, (tt >> 12) & 0xff, (tt >> 4) & 0xff,
