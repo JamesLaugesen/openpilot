@@ -1,15 +1,15 @@
 from selfdrive.car import make_can_msg
 
-def create_steering_control(packer, bus, apply_steer, idx, lkas_active):
-
-  values = {
-    "LKASteeringCmdActive": lkas_active,
-    "LKASteeringCmd": apply_steer,
-    "RollingCounter": idx,
-    "LKASteeringCmdChecksum": 0x1000 - (lkas_active << 11) - (apply_steer & 0x7ff) - idx
-  }
-
-  return packer.make_can_msg("ASCMLKASteeringCmd", bus, values)
+# def create_steering_control(packer, bus, apply_steer, idx, lkas_active):
+# 
+#   values = {
+#     "LKASteeringCmdActive": lkas_active,
+#     "LKASteeringCmd": apply_steer,
+#     "RollingCounter": idx,
+#     "LKASteeringCmdChecksum": 0x1000 - (lkas_active << 11) - (apply_steer & 0x7ff) - idx
+#   }
+# 
+#   return packer.make_can_msg("ASCMLKASteeringCmd", bus, values)
 
 def create_adas_keepalive(bus):
   dat = b"\x00\x00\x00\x00\x00\x00\x00"
@@ -83,11 +83,11 @@ def create_adas_time_status(bus, tt, idx):
   dat += [0x40 + (chksum >> 8), chksum & 0xff, 0x12]
   return make_can_msg(0xa1, bytes(dat), bus)
 
-def create_adas_steering_status(bus, idx):
-  dat = [idx << 6, 0xf0, 0x20, 0, 0, 0]
-  chksum = 0x60 + sum(dat)
-  dat += [chksum >> 8, chksum & 0xff]
-  return make_can_msg(0x306, bytes(dat), bus)
+# def create_adas_steering_status(bus, idx):
+#   dat = [idx << 6, 0xf0, 0x20, 0, 0, 0]
+#   chksum = 0x60 + sum(dat)
+#   dat += [chksum >> 8, chksum & 0xff]
+#   return make_can_msg(0x306, bytes(dat), bus)
 
 def create_adas_accelerometer_speed_status(bus, speed_ms, idx):
   spd = int(speed_ms * 16) & 0xfff
@@ -109,17 +109,17 @@ def create_adas_headlights_status(packer, bus):
   }
   return packer.make_can_msg("ASCMHeadlight", bus, values)
 
-def create_lka_icon_command(bus, active, critical, steer):
-  if active and steer == 1:
-    if critical:
-      dat = b"\x50\xc0\x14"
-    else:
-      dat = b"\x50\x40\x18"
-  elif active:
-    if critical:
-      dat = b"\x40\xc0\x14"
-    else:
-      dat = b"\x40\x40\x18"
-  else:
-    dat = b"\x00\x00\x00"
-  return make_can_msg(0x104c006c, dat, bus)
+# def create_lka_icon_command(bus, active, critical, steer):
+#   if active and steer == 1:
+#     if critical:
+#       dat = b"\x50\xc0\x14"
+#     else:
+#       dat = b"\x50\x40\x18"
+#   elif active:
+#     if critical:
+#       dat = b"\x40\xc0\x14"
+#     else:
+#       dat = b"\x40\x40\x18"
+#   else:
+#     dat = b"\x00\x00\x00"
+#   return make_can_msg(0x104c006c, dat, bus)

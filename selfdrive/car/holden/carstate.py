@@ -18,7 +18,7 @@ class CarState(CarStateBase):
     ret = car.CarState.new_message()
 
     self.prev_cruise_buttons = self.cruise_buttons
-    self.cruise_buttons = pt_cp.vl["ASCMSteeringButton"]["ACCButtons"]
+#     self.cruise_buttons = pt_cp.vl["ASCMSteeringButton"]["ACCButtons"]
 
     ret.wheelSpeeds.fl = pt_cp.vl["EBCMWheelSpdFront"]["FLWheelSpd"] * CV.KPH_TO_MS
     ret.wheelSpeeds.fr = pt_cp.vl["EBCMWheelSpdFront"]["FRWheelSpd"] * CV.KPH_TO_MS
@@ -39,14 +39,14 @@ class CarState(CarStateBase):
 
     ret.steeringAngleDeg = pt_cp.vl["PSCMSteeringAngle"]["SteeringWheelAngle"]
     ret.steeringRateDeg = pt_cp.vl["PSCMSteeringAngle"]["SteeringWheelRate"]
-    ret.steeringTorque = pt_cp.vl["PSCMStatus"]["LKADriverAppldTrq"]
-    ret.steeringTorqueEps = pt_cp.vl["PSCMStatus"]["LKATorqueDelivered"]
-    ret.steeringPressed = abs(ret.steeringTorque) > STEER_THRESHOLD
+#     ret.steeringTorque = pt_cp.vl["PSCMStatus"]["LKADriverAppldTrq"]
+#     ret.steeringTorqueEps = pt_cp.vl["PSCMStatus"]["LKATorqueDelivered"]
+#     ret.steeringPressed = abs(ret.steeringTorque) > STEER_THRESHOLD
 
-    # 0 inactive, 1 active, 2 temporarily limited, 3 failed
-    self.lkas_status = pt_cp.vl["PSCMStatus"]["LKATorqueDeliveredStatus"]
-    ret.steerWarning = self.lkas_status == 2
-    ret.steerError = self.lkas_status == 3
+#     # 0 inactive, 1 active, 2 temporarily limited, 3 failed
+#     self.lkas_status = pt_cp.vl["PSCMStatus"]["LKATorqueDeliveredStatus"]
+#     ret.steerWarning = self.lkas_status == 2
+#     ret.steerError = self.lkas_status == 3
 
     # 1 - open, 0 - closed
     ret.doorOpen = (pt_cp.vl["BCMDoorBeltStatus"]["FrontLeftDoor"] == 1 or
@@ -89,7 +89,7 @@ class CarState(CarStateBase):
       ("TurnSignals", "BCMTurnSignals", 0),
       ("AcceleratorPedal", "AcceleratorPedal", 0),
       ("CruiseState", "AcceleratorPedal2", 0),
-      ("ACCButtons", "ASCMSteeringButton", CruiseButtons.UNPRESS),
+#       ("ACCButtons", "ASCMSteeringButton", CruiseButtons.UNPRESS),
       ("SteeringWheelAngle", "PSCMSteeringAngle", 0),
       ("SteeringWheelRate", "PSCMSteeringAngle", 0),
       ("FLWheelSpd", "EBCMWheelSpdFront", 0),
@@ -97,9 +97,9 @@ class CarState(CarStateBase):
       ("RLWheelSpd", "EBCMWheelSpdRear", 0),
       ("RRWheelSpd", "EBCMWheelSpdRear", 0),
       ("PRNDL", "ECMPRDNL", 0),
-      ("LKADriverAppldTrq", "PSCMStatus", 0),
-      ("LKATorqueDelivered", "PSCMStatus", 0),
-      ("LKATorqueDeliveredStatus", "PSCMStatus", 0),
+#       ("LKADriverAppldTrq", "PSCMStatus", 0),
+#       ("LKATorqueDelivered", "PSCMStatus", 0),
+#       ("LKATorqueDeliveredStatus", "PSCMStatus", 0),
       ("TractionControlOn", "ESPStatus", 0),
       ("EPBClosed", "EPBStatus", 0),
       ("CruiseMainOn", "ECMEngineStatus", 0),
@@ -116,7 +116,7 @@ class CarState(CarStateBase):
       ("EBCMWheelSpdRear", 20),
       ("AcceleratorPedal", 33),
       ("AcceleratorPedal2", 33),
-      ("ASCMSteeringButton", 33),
+#       ("ASCMSteeringButton", 33),
       ("ECMEngineStatus", 100),
       ("PSCMSteeringAngle", 100),
       ("EBCMBrakePedalPosition", 100),
