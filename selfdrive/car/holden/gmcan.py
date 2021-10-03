@@ -15,48 +15,48 @@ from selfdrive.car import make_can_msg
 #   dat = b"\x00\x00\x00\x00\x00\x00\x00"
 #   return [make_can_msg(0x409, dat, bus), make_can_msg(0x40a, dat, bus)]
 
-def create_gas_regen_command(packer, bus, throttle, idx, acc_engaged, at_full_stop):
-  values = {
-    "GasRegenCmdActive": acc_engaged,
-    "RollingCounter": idx,
-    "GasRegenCmdActiveInv": 1 - acc_engaged,
-    "GasRegenCmd": throttle,
-    "GasRegenFullStopActive": at_full_stop,
-    "GasRegenAlwaysOne": 1,
-    "GasRegenAlwaysOne2": 1,
-    "GasRegenAlwaysOne3": 1,
-  }
+# def create_gas_regen_command(packer, bus, throttle, idx, acc_engaged, at_full_stop):
+#   values = {
+#     "GasRegenCmdActive": acc_engaged,
+#     "RollingCounter": idx,
+#     "GasRegenCmdActiveInv": 1 - acc_engaged,
+#     "GasRegenCmd": throttle,
+#     "GasRegenFullStopActive": at_full_stop,
+#     "GasRegenAlwaysOne": 1,
+#     "GasRegenAlwaysOne2": 1,
+#     "GasRegenAlwaysOne3": 1,
+#   }
+# 
+#   dat = packer.make_can_msg("ASCMGasRegenCmd", bus, values)[2]
+#   values["GasRegenChecksum"] = (((0xff - dat[1]) & 0xff) << 16) | \
+#                                (((0xff - dat[2]) & 0xff) << 8) | \
+#                                ((0x100 - dat[3] - idx) & 0xff)
+# 
+#   return packer.make_can_msg("ASCMGasRegenCmd", bus, values)
 
-  dat = packer.make_can_msg("ASCMGasRegenCmd", bus, values)[2]
-  values["GasRegenChecksum"] = (((0xff - dat[1]) & 0xff) << 16) | \
-                               (((0xff - dat[2]) & 0xff) << 8) | \
-                               ((0x100 - dat[3] - idx) & 0xff)
-
-  return packer.make_can_msg("ASCMGasRegenCmd", bus, values)
-
-def create_friction_brake_command(packer, bus, apply_brake, idx, near_stop, at_full_stop):
-  mode = 0x1
-  if apply_brake > 0:
-    mode = 0xa
-    if at_full_stop:
-      mode = 0xd
-
-    # TODO: this is to have GM bringing the car to complete stop,
-    # but currently it conflicts with OP controls, so turned off.
-    #elif near_stop:
-    #  mode = 0xb
-
-  brake = (0x1000 - apply_brake) & 0xfff
-  checksum = (0x10000 - (mode << 12) - brake - idx) & 0xffff
-
-  values = {
-    "RollingCounter" : idx,
-    "FrictionBrakeMode" : mode,
-    "FrictionBrakeChecksum": checksum,
-    "FrictionBrakeCmd" : -apply_brake
-  }
-
-  return packer.make_can_msg("EBCMFrictionBrakeCmd", bus, values)
+# def create_friction_brake_command(packer, bus, apply_brake, idx, near_stop, at_full_stop):
+#   mode = 0x1
+#   if apply_brake > 0:
+#     mode = 0xa
+#     if at_full_stop:
+#       mode = 0xd
+# 
+#     # TODO: this is to have GM bringing the car to complete stop,
+#     # but currently it conflicts with OP controls, so turned off.
+#     #elif near_stop:
+#     #  mode = 0xb
+# 
+#   brake = (0x1000 - apply_brake) & 0xfff
+#   checksum = (0x10000 - (mode << 12) - brake - idx) & 0xffff
+# 
+#   values = {
+#     "RollingCounter" : idx,
+#     "FrictionBrakeMode" : mode,
+#     "FrictionBrakeChecksum": checksum,
+#     "FrictionBrakeCmd" : -apply_brake
+#   }
+# 
+#   return packer.make_can_msg("EBCMFrictionBrakeCmd", bus, values)
 
 # def create_acc_dashboard_command(packer, bus, acc_engaged, target_speed_kph, lead_car_in_sight, fcw):
 #   # Not a bit shift, dash can round up based on low 4 bits.

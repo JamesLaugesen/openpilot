@@ -3,7 +3,7 @@ from common.realtime import DT_CTRL
 from common.numpy_fast import interp
 from selfdrive.config import Conversions as CV
 # from selfdrive.car import apply_std_steer_torque_limits
-from selfdrive.car.holden import gmcan
+#from selfdrive.car.holden import gmcan
 from selfdrive.car.holden.values import DBC, CanBus, CarControllerParams
 # from opendbc.can.packer import CANPacker
 
