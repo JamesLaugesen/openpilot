@@ -21,7 +21,7 @@ class CarInterface(CarInterfaceBase):
   def get_params(candidate, fingerprint=gen_empty_fingerprint(), car_fw=None):
     ret = CarInterfaceBase.get_std_params(candidate, fingerprint)
     ret.carName = "holden"
-    ret.safetyModel = car.CarParams.SafetyModel.gm
+    ret.safetyModel = car.CarParams.SafetyModel.noOutput
     ret.pcmCruise = False  # stock cruise control is kept off
 
     # GM port is a community feature
