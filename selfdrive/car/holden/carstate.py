@@ -49,14 +49,14 @@ class CarState(CarStateBase):
 #     ret.steerWarning = self.lkas_status == 2
 #     ret.steerError = self.lkas_status == 3
 
-    # 1 - open, 0 - closed
-    ret.doorOpen = (pt_cp.vl["BCMDoorBeltStatus"]["FrontLeftDoor"] == 1 or
-                    pt_cp.vl["BCMDoorBeltStatus"]["FrontRightDoor"] == 1 or
-                    pt_cp.vl["BCMDoorBeltStatus"]["RearLeftDoor"] == 1 or
-                    pt_cp.vl["BCMDoorBeltStatus"]["RearRightDoor"] == 1)
+#     # 1 - open, 0 - closed
+#     ret.doorOpen = (pt_cp.vl["BCMDoorBeltStatus"]["FrontLeftDoor"] == 1 or
+#                     pt_cp.vl["BCMDoorBeltStatus"]["FrontRightDoor"] == 1 or
+#                     pt_cp.vl["BCMDoorBeltStatus"]["RearLeftDoor"] == 1 or
+#                     pt_cp.vl["BCMDoorBeltStatus"]["RearRightDoor"] == 1)
 
-    # 1 - latched
-    ret.seatbeltUnlatched = pt_cp.vl["BCMDoorBeltStatus"]["LeftSeatBelt"] == 0
+#     # 1 - latched
+#     ret.seatbeltUnlatched = pt_cp.vl["BCMDoorBeltStatus"]["LeftSeatBelt"] == 0
     ret.leftBlinker = pt_cp.vl["BCMTurnSignals"]["TurnSignals"] == 1
     ret.rightBlinker = pt_cp.vl["BCMTurnSignals"]["TurnSignals"] == 2
 
@@ -81,12 +81,12 @@ class CarState(CarStateBase):
     signals = [
       # sig_name, sig_address, default
       ("BrakePedalPosition", "EBCMBrakePedalPosition", 0),
-      ("FrontLeftDoor", "BCMDoorBeltStatus", 0),
-      ("FrontRightDoor", "BCMDoorBeltStatus", 0),
-      ("RearLeftDoor", "BCMDoorBeltStatus", 0),
-      ("RearRightDoor", "BCMDoorBeltStatus", 0),
-      ("LeftSeatBelt", "BCMDoorBeltStatus", 0),
-      ("RightSeatBelt", "BCMDoorBeltStatus", 0),
+#       ("FrontLeftDoor", "BCMDoorBeltStatus", 0),
+#       ("FrontRightDoor", "BCMDoorBeltStatus", 0),
+#       ("RearLeftDoor", "BCMDoorBeltStatus", 0),
+#       ("RearRightDoor", "BCMDoorBeltStatus", 0),
+#       ("LeftSeatBelt", "BCMDoorBeltStatus", 0),
+#       ("RightSeatBelt", "BCMDoorBeltStatus", 0),
       ("TurnSignals", "BCMTurnSignals", 0),
       ("AcceleratorPedal", "AcceleratorPedal", 0),
       ("CruiseState", "AcceleratorPedal2", 0),
@@ -111,7 +111,7 @@ class CarState(CarStateBase):
       ("ECMPRDNL", 10),
       ("PSCMStatus", 10),
       ("ESPStatus", 10),
-      ("BCMDoorBeltStatus", 10),
+#       ("BCMDoorBeltStatus", 10),
       ("EPBStatus", 20),
       ("EBCMWheelSpdFront", 20),
       ("EBCMWheelSpdRear", 20),
