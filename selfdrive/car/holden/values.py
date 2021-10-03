@@ -16,9 +16,9 @@ class CarControllerParams():
 #     self.STEER_DRIVER_FACTOR = 100     # from dbc
     self.NEAR_STOP_BRAKE_PHASE = 0.5  # m/s, more aggressive braking near full stop
 
-    # Takes case of "Service Adaptive Cruise" and "Service Front Camera"
-    # dashboard messages.
-    self.ADAS_KEEPALIVE_STEP = 100
+#     # Takes case of "Service Adaptive Cruise" and "Service Front Camera"
+#     # dashboard messages.
+#     self.ADAS_KEEPALIVE_STEP = 100
     self.CAMERA_KEEPALIVE_STEP = 100
 
     # pedal lookups, only for Volt
