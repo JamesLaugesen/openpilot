@@ -87,7 +87,7 @@ class CarState(CarStateBase):
 #       ("RearRightDoor", "BCMDoorBeltStatus", 0),
 #       ("LeftSeatBelt", "BCMDoorBeltStatus", 0),
 #       ("RightSeatBelt", "BCMDoorBeltStatus", 0),
-      ("TurnSignals", "BCMTurnSignals", 0),
+#       ("TurnSignals", "BCMTurnSignals", 0),
       ("AcceleratorPedal", "AcceleratorPedal", 0),
       ("CruiseState", "AcceleratorPedal2", 0),
 #       ("ACCButtons", "ASCMSteeringButton", CruiseButtons.UNPRESS),
@@ -107,7 +107,7 @@ class CarState(CarStateBase):
     ]
 
     checks = [
-      ("BCMTurnSignals", 1),
+#       ("BCMTurnSignals", 1),
       ("ECMPRDNL", 10),
       ("PSCMStatus", 10),
       ("ESPStatus", 10),
