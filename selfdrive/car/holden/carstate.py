@@ -57,8 +57,8 @@ class CarState(CarStateBase):
 
 #     # 1 - latched
 #     ret.seatbeltUnlatched = pt_cp.vl["BCMDoorBeltStatus"]["LeftSeatBelt"] == 0
-    ret.leftBlinker = pt_cp.vl["BCMTurnSignals"]["TurnSignals"] == 1
-    ret.rightBlinker = pt_cp.vl["BCMTurnSignals"]["TurnSignals"] == 2
+#     ret.leftBlinker = pt_cp.vl["BCMTurnSignals"]["TurnSignals"] == 1
+#     ret.rightBlinker = pt_cp.vl["BCMTurnSignals"]["TurnSignals"] == 2
 
     self.park_brake = pt_cp.vl["EPBStatus"]["EPBClosed"]
     ret.cruiseState.available = bool(pt_cp.vl["ECMEngineStatus"]["CruiseMainOn"])
